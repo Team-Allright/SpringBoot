@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: SpringBoot
+  config:
+    import: classpath:config/
+  profiles:
+    active: local
+
+springdoc:
+  swagger-ui:
+    path: /docs.html
+  api-docs:
+    path: /docs
