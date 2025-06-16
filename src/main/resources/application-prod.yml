@@ -15,4 +15,4 @@ spring:
       max-request-size: 50MB
 ai:
   request:
-    url: "https://11c1-211-248-132-70.ngrok-free.app"
+    url: "https://54.205.90.224/ai"
