@@ -25,8 +25,9 @@ if [ "$(sudo docker ps -q -f name=springboot-app)" ]; then
     sudo docker stop springboot-app
 fi
 
-# Docker 컨테이너 실행 (-d: 백그라운드 실행, --rm: 종료 시 컨테이너 자동 삭제)
-sudo docker run -d --rm --name springboot-app -p 8080:8080 ${DOCKERHUB_REPO}:latest
+sudo docker-compose up -d
+
+sudo docker logs -f springboot-app &> springboot.log &
 
 echo "============================"
 echo "컨테이너 실행 완료! 실행 중인 컨테이너 목록:"

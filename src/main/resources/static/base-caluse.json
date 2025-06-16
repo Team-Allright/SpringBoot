@@ -1,0 +1,9 @@
+{
+  "session_id" : "abc",
+  "is_violation" :true,
+  "message": "법률 근거를 만족 못하는 조항이 있습니다.",
+  "violated_clauses": [
+    "제2조 임대차 기간은 100년으로 한다.",
+    "제5조 계약 해지는 일방 통보로 가능하다."
+  ]
+}

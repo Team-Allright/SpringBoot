@@ -7,6 +7,12 @@ DOCKERHUB_USERNAME="rlarbals9907"
 DOCKERHUB_REPO="${DOCKERHUB_USERNAME}/${IMAGE_NAME}"
 
 echo "============================"
+echo "Gradle 빌드 시작"
+./gradlew clean build -x test -Pprofile=prod
+echo "빌드 완료"
+echo "============================"
+
+echo "============================"
 echo "Docker 이미지 빌드 시작"
 echo "이미지: ${DOCKERHUB_REPO}:latest"
 echo "============================"

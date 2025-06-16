@@ -24,26 +24,33 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 public class ContractExtractionService {
 
-	@Value("${ocr.request.url}")
+	@Value("${ai.request.url}")
 	private String requestUrl;
 
 	// TODO: s3 url을 넘겨주는 방법으로 변경
-	public OcrResultDto.Response requestOcrProcess(MultipartFile contractImage, String requestId) {
+	public OcrResultDto.Response requestOcrProcess(MultipartFile contractImage, String requestId, String contractImageUrl) {
 
 		RestTemplate restTemplate = new RestTemplate();
 
 		Resource contractImageResource = contractImage.getResource();
 
-		URI requestUri = UriComponentsBuilder.fromUriString(requestUrl)
-			.queryParam("requestId", requestId)
+		URI requestUri = UriComponentsBuilder.fromUriString(requestUrl + "/analyze/contract-image")
 			.build()
 			.toUri();
+
+		log.info("requestUri: {}", requestUri);
 
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.MULTIPART_FORM_DATA);
 
 		MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
 		body.add("file", contractImageResource);
+		body.add("session_id", requestId);
+		body.add("file_url", contractImageUrl);
+
+		log.info("file: {}", contractImageResource);
+		log.info("requestId: {}", requestId);
+		log.info("body: {}", body);
 
 		HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(body, headers);
 

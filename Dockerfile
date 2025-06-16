@@ -5,10 +5,14 @@ FROM openjdk:17-jdk-slim
 WORKDIR /app
 
 # 빌드된 JAR 파일을 이미지에 추가
+#COPY env/local.env env/local.env
 COPY build/libs/*.jar app.jar
 
 # 애플리케이션 포트 설정
 EXPOSE 8080
+EXPOSE 27017
+
+ENV SPRING_PROFILES_ACTIVE=prod
 
 # 애플리케이션 실행 명령어
 ENTRYPOINT ["java", "-jar", "app.jar"]

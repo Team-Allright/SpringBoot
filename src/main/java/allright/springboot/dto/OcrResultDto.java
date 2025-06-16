@@ -5,11 +5,14 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Getter;
+import lombok.ToString;
 
 public class OcrResultDto {
 
 	@Getter
+	@ToString
 	public static class Response {
+		@JsonProperty("session_id")
 		private String requestId;
 
 		@JsonProperty("seller_info")
@@ -20,6 +23,7 @@ public class OcrResultDto {
 	}
 
 	@Getter
+	@ToString
 	public static class SellerInformation {
 		private String name;
 
@@ -29,19 +33,18 @@ public class OcrResultDto {
 		@JsonProperty("phone")
 		private String phoneNumber;
 
-		private String address;
+		private String propertyAddress;
+
+		private String lessorAddress;
 	}
 
 	@Getter
+	@ToString
 	public static class Clause {
 		@JsonProperty("base_clauses")
 		private List<String> baseClauseList;
 
 		@JsonProperty("special_clauses")
 		private List<String> specialClauseList;
-	}
-
-	public static class Parameter {
-
 	}
 }
